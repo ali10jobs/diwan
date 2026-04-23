@@ -16,6 +16,8 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "test": "jest",
+    "test:e2e": "playwright test",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -34,7 +36,12 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -42,6 +49,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "husky": "^9.1.7",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "lint-staged": "^15.5.2",
     "prettier": "^3.8.3",
     "tailwindcss": "^4",
