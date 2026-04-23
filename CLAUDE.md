@@ -641,7 +641,7 @@ A `.github/pull_request_template.md` surfaces a short checklist, but the gate is
 ## Critical Files
 
 - `app/[locale]/layout.tsx` — root direction/lang wiring (most load-bearing single file)
-- `middleware.ts` — locale negotiation
+- `proxy.ts` — locale negotiation
 - `lib/i18n/request.ts` — next-intl server config
 - `components/ui/*` — RTL-patched shadcn primitives
 - `components/data-grid/*` — the 50k-row showpiece

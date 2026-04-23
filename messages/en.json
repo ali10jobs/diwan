@@ -1,0 +1,29 @@
+{
+  "app": {
+    "name": "Diwan",
+    "tagline": "The register, reimagined.",
+    "description": "Bilingual RTL-first enterprise dashboard."
+  },
+  "nav": {
+    "overview": "Overview",
+    "transactions": "Transactions",
+    "customers": "Customers",
+    "agent": "Agent",
+    "settings": "Settings"
+  },
+  "locale": {
+    "switchLabel": "Language",
+    "en": "English",
+    "ar": "العربية"
+  },
+  "common": {
+    "loading": "Loading…",
+    "retry": "Try again",
+    "goHome": "Go to overview",
+    "itemsFound": "{count, plural, =0 {No items} one {# item} other {# items}}"
+  },
+  "phase0": {
+    "heading": "Diwan",
+    "subtitle": "Phase 1 — i18n & RTL primitives."
+  }
+}
