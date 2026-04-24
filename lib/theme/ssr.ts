@@ -3,8 +3,12 @@ import {
   BRAND_COOKIE,
   type Brand,
   defaultBrand,
+  defaultDensity,
   defaultTheme,
+  DENSITY_COOKIE,
+  type Density,
   isBrand,
+  isDensity,
   isTheme,
   THEME_COOKIE,
   type ThemeMode,
@@ -27,4 +31,10 @@ export async function readThemeCookie(): Promise<ThemeMode> {
  * rely on a pre-hydration script to read `prefers-color-scheme`. */
 export function resolveInitialThemeAttr(mode: ThemeMode): "light" | "dark" | undefined {
   return mode === "system" ? undefined : mode;
+}
+
+export async function readDensityCookie(): Promise<Density> {
+  const jar = await cookies();
+  const value = jar.get(DENSITY_COOKIE)?.value;
+  return isDensity(value) ? value : defaultDensity;
 }

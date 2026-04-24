@@ -65,24 +65,31 @@ test.describe("no layout shift on toggle", () => {
     expect(cls).toBeLessThan(0.05);
   });
 
-  test("heading stays centered in the shell across the toggle", async ({ page }) => {
-    // Text content legitimately changes width between locales/fonts — we
-    // assert only that the heading remains horizontally centered, which is
-    // the real invariant a user would perceive as "no layout jump".
+  test("heading anchors to the inline-start edge in both directions", async ({ page }) => {
+    // Phase 3 replaced the centered home page with a shell-based
+    // layout where the heading sits against the inline-start edge. The
+    // "no layout jump" invariant becomes: the heading's *start* edge is
+    // a stable distance from the viewport's inline-start edge in each
+    // locale (LTR start = left, RTL start = right).
     await page.goto("/en");
     const heading = page.getByRole("heading", { level: 1 });
     await expect(heading).toBeVisible();
     const viewportWidth = page.viewportSize()?.width ?? 1440;
 
-    const before = await heading.boundingBox();
+    const ltrBox = await heading.boundingBox();
+    expect(ltrBox).not.toBeNull();
+    const ltrStart = ltrBox!.x; // distance from left edge
+
     await page.locator("#locale-switch").selectOption("ar");
     await expect(page).toHaveURL(/\/ar(\/|$|\?)/);
     await expectDir(page, "rtl");
-    const after = await heading.boundingBox();
 
-    const centerBefore = before!.x + before!.width / 2 - viewportWidth / 2;
-    const centerAfter = after!.x + after!.width / 2 - viewportWidth / 2;
-    expect(Math.abs(centerBefore)).toBeLessThanOrEqual(2);
-    expect(Math.abs(centerAfter)).toBeLessThanOrEqual(2);
+    const rtlBox = await heading.boundingBox();
+    expect(rtlBox).not.toBeNull();
+    const rtlStart = viewportWidth - (rtlBox!.x + rtlBox!.width); // distance from right edge
+
+    // Both "inline-start" gaps should be equal within a few pixels —
+    // the same structural start offset, just mirrored.
+    expect(Math.abs(ltrStart - rtlStart)).toBeLessThanOrEqual(4);
   });
 });

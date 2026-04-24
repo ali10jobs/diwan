@@ -4,7 +4,12 @@ import { test, expect } from "@playwright/test";
 // runtime with no reload and no FOUC."
 
 test.describe("brand + theme runtime swap", () => {
-  test("brand swap updates data-brand and primary color without reload", async ({ page }) => {
+  // Brand + density switchers are xl:block — only exercised on laptop.
+  // Theme is always visible and its test runs on both projects.
+  test("brand swap updates data-brand and primary color without reload", async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== "laptop", "brand switcher is xl-only");
     await page.goto("/en");
     const html = page.locator("html");
     await expect(html).toHaveAttribute("data-brand", "bayan");

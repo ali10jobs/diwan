@@ -6,8 +6,15 @@ import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { defaultLocale, localeDirection, locales, type Locale } from "@/lib/i18n/config";
 import { routing } from "@/lib/i18n/navigation";
 import { BrandProvider } from "@/components/theme/BrandProvider";
+import { DensityProvider } from "@/components/theme/DensityProvider";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { readBrandCookie, readThemeCookie, resolveInitialThemeAttr } from "@/lib/theme/ssr";
+import { AppShell } from "@/components/layout/AppShell";
+import {
+  readBrandCookie,
+  readDensityCookie,
+  readThemeCookie,
+  resolveInitialThemeAttr,
+} from "@/lib/theme/ssr";
 import "../globals.css";
 
 const inter = Inter({
@@ -52,10 +59,11 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
 
   setRequestLocale(locale);
-  const [messages, brand, themeMode] = await Promise.all([
+  const [messages, brand, themeMode, density] = await Promise.all([
     getMessages(),
     readBrandCookie(),
     readThemeCookie(),
+    readDensityCookie(),
   ]);
   const dir = localeDirection[locale];
   const initialThemeAttr = resolveInitialThemeAttr(themeMode);
@@ -65,6 +73,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={dir}
       data-brand={brand}
+      data-density={density}
       {...(initialThemeAttr ? { "data-theme": initialThemeAttr } : {})}
       className={`${inter.variable} ${plexArabic.variable} h-full antialiased`}
       // next-themes rewrites `data-theme` and `style="color-scheme"` after
@@ -78,7 +87,11 @@ export default async function LocaleLayout({
       <body className="flex min-h-full flex-col font-sans">
         <NextIntlClientProvider messages={messages} locale={locale}>
           <BrandProvider initialBrand={brand}>
-            <ThemeProvider defaultMode={themeMode}>{children}</ThemeProvider>
+            <ThemeProvider defaultMode={themeMode}>
+              <DensityProvider initialDensity={density}>
+                <AppShell>{children}</AppShell>
+              </DensityProvider>
+            </ThemeProvider>
           </BrandProvider>
         </NextIntlClientProvider>
       </body>

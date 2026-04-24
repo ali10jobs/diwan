@@ -2,9 +2,11 @@
   "app": {
     "name": "Diwan",
     "tagline": "The register, reimagined.",
-    "description": "Bilingual RTL-first enterprise dashboard."
+    "description": "Bilingual RTL-first enterprise dashboard.",
+    "sidebarLabel": "Primary sidebar"
   },
   "nav": {
+    "primary": "Primary navigation",
     "overview": "Overview",
     "transactions": "Transactions",
     "customers": "Customers",
@@ -24,7 +26,7 @@
   },
   "phase0": {
     "heading": "Diwan",
-    "subtitle": "Phase 2 — Design system & tokens."
+    "subtitle": "Phase 3 — AppShell & navigation."
   },
   "theme": {
     "label": "Theme",
@@ -34,5 +36,14 @@
   },
   "brand": {
     "label": "Brand"
+  },
+  "density": {
+    "label": "Density",
+    "comfortable": "Comfortable",
+    "compact": "Compact"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "openNav": "Open navigation"
   }
 }
