@@ -1,10 +1,19 @@
 @import "tailwindcss";
 @import "../tokens/build/tokens.css";
 
-/* Bridge the auto-generated CSS variables into Tailwind v4's utility theme.
- * `inline` keeps the `var(...)` reference — so changing `[data-brand]` or
- * `[data-theme]` at runtime swaps colors without re-running the build. */
+/*
+ * Bridge the generated brand tokens into Tailwind v4's utility theme.
+ * Two layers here:
+ *   1. `color-<name>` variables that mirror what we emit in tokens.css —
+ *      these power our own utilities (bg-bg, text-fg, bg-primary, …).
+ *   2. shadcn/ui semantic aliases (`background`, `foreground`, `primary`,
+ *      `primary-foreground`, `muted`, `card`, `popover`, `destructive`,
+ *      `input`, `ring`, `border`, …). shadcn primitives are generated
+ *      against these names; aliasing here lets the same classes pick
+ *      up any [data-brand][data-theme] swap at runtime without a rebuild.
+ */
 @theme inline {
+  /* 1. direct mirrors */
   --color-bg: var(--color-bg);
   --color-bg-elevated: var(--color-bg-elevated);
   --color-fg: var(--color-fg);
@@ -17,6 +26,23 @@
   --color-danger: var(--color-danger);
   --color-success: var(--color-success);
   --color-warning: var(--color-warning);
+
+  /* 2. shadcn semantic aliases */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-card: var(--color-bg-elevated);
+  --color-card-foreground: var(--color-fg);
+  --color-popover: var(--color-bg-elevated);
+  --color-popover-foreground: var(--color-fg);
+  --color-primary-foreground: var(--color-primary-contrast);
+  --color-secondary: var(--color-bg-elevated);
+  --color-secondary-foreground: var(--color-fg);
+  --color-muted: var(--color-bg-elevated);
+  --color-muted-foreground: var(--color-fg-muted);
+  --color-accent-foreground: var(--color-fg);
+  --color-destructive: var(--color-danger);
+  --color-destructive-foreground: var(--color-primary-contrast);
+  --color-input: var(--color-border);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
