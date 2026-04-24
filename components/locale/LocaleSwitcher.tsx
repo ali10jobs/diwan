@@ -21,7 +21,7 @@ export function LocaleSwitcher() {
 
   return (
     <div className="inline-flex items-center gap-2" aria-busy={isPending}>
-      <label htmlFor="locale-switch" className="text-sm text-zinc-600">
+      <label htmlFor="locale-switch" className="text-sm text-[color:var(--color-fg-muted)]">
         {t("switchLabel")}
       </label>
       <select
@@ -29,7 +29,7 @@ export function LocaleSwitcher() {
         value={locale}
         onChange={(e) => onChange(e.target.value as Locale)}
         disabled={isPending}
-        className="h-11 min-w-[9rem] rounded-md border border-zinc-300 bg-white px-3 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 disabled:opacity-60"
+        className="h-11 min-w-[9rem] rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)] px-3 text-sm text-[color:var(--color-fg)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-ring)] disabled:opacity-60"
       >
         {locales.map((l) => (
           <option key={l} value={l}>
