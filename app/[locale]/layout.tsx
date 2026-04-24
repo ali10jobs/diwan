@@ -9,6 +9,7 @@ import { BrandProvider } from "@/components/theme/BrandProvider";
 import { DensityProvider } from "@/components/theme/DensityProvider";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { AppShell } from "@/components/layout/AppShell";
+import { QueryProvider } from "@/components/query/QueryProvider";
 import {
   readBrandCookie,
   readDensityCookie,
@@ -89,7 +90,9 @@ export default async function LocaleLayout({
           <BrandProvider initialBrand={brand}>
             <ThemeProvider defaultMode={themeMode}>
               <DensityProvider initialDensity={density}>
-                <AppShell>{children}</AppShell>
+                <QueryProvider>
+                  <AppShell>{children}</AppShell>
+                </QueryProvider>
               </DensityProvider>
             </ThemeProvider>
           </BrandProvider>
