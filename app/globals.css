@@ -1,21 +1,28 @@
 @import "tailwindcss";
+@import "../tokens/build/tokens.css";
 
-:root {
-  --background: #f8fafa;
-  --foreground: #0e1a1c;
-}
-
+/* Bridge the auto-generated CSS variables into Tailwind v4's utility theme.
+ * `inline` keeps the `var(...)` reference — so changing `[data-brand]` or
+ * `[data-theme]` at runtime swaps colors without re-running the build. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans-en), var(--font-sans-ar), system-ui, sans-serif;
-}
+  --color-bg: var(--color-bg);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-fg: var(--color-fg);
+  --color-fg-muted: var(--color-fg-muted);
+  --color-primary: var(--color-primary);
+  --color-primary-contrast: var(--color-primary-contrast);
+  --color-accent: var(--color-accent);
+  --color-border: var(--color-border);
+  --color-ring: var(--color-ring);
+  --color-danger: var(--color-danger);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b1416;
-    --foreground: #e6eef0;
-  }
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  --font-sans: var(--font-sans-en), var(--font-sans-ar), system-ui, sans-serif;
 }
 
 [dir="rtl"] body {
@@ -23,6 +30,6 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg);
+  color: var(--color-fg);
 }

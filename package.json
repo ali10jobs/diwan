@@ -8,8 +8,8 @@
     "pnpm": ">=10"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "pnpm tokens:build && next dev",
+    "build": "pnpm tokens:build && next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -18,6 +18,7 @@
     "format:check": "prettier --check .",
     "test": "jest",
     "test:e2e": "playwright test",
+    "tokens:build": "tsx scripts/build-tokens.ts",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -53,7 +54,9 @@
     "jest-environment-jsdom": "^30.3.0",
     "lint-staged": "^15.5.2",
     "prettier": "^3.8.3",
+    "style-dictionary": "^5.4.0",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

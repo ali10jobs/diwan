@@ -24,6 +24,15 @@
   },
   "phase0": {
     "heading": "Diwan",
-    "subtitle": "Phase 1 — i18n & RTL primitives."
+    "subtitle": "Phase 2 — Design system & tokens."
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "brand": {
+    "label": "Brand"
   }
 }

@@ -5,6 +5,9 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { defaultLocale, localeDirection, locales, type Locale } from "@/lib/i18n/config";
 import { routing } from "@/lib/i18n/navigation";
+import { BrandProvider } from "@/components/theme/BrandProvider";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { readBrandCookie, readThemeCookie, resolveInitialThemeAttr } from "@/lib/theme/ssr";
 import "../globals.css";
 
 const inter = Inter({
@@ -49,18 +52,34 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
 
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const [messages, brand, themeMode] = await Promise.all([
+    getMessages(),
+    readBrandCookie(),
+    readThemeCookie(),
+  ]);
   const dir = localeDirection[locale];
+  const initialThemeAttr = resolveInitialThemeAttr(themeMode);
 
   return (
     <html
       lang={locale}
       dir={dir}
+      data-brand={brand}
+      {...(initialThemeAttr ? { "data-theme": initialThemeAttr } : {})}
       className={`${inter.variable} ${plexArabic.variable} h-full antialiased`}
+      // next-themes rewrites `data-theme` and `style="color-scheme"` after
+      // hydration when the user's preference is `system`; suppress the
+      // hydration warning for exactly those attributes on <html>. FOUC is
+      // prevented at the CSS layer via `@media (prefers-color-scheme)`
+      // fallbacks in the generated tokens.css, so no pre-hydration script
+      // is needed.
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans">
         <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
+          <BrandProvider initialBrand={brand}>
+            <ThemeProvider defaultMode={themeMode}>{children}</ThemeProvider>
+          </BrandProvider>
         </NextIntlClientProvider>
       </body>
     </html>

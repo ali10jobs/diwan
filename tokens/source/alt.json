@@ -1,0 +1,53 @@
+{
+  "brand": { "value": "alt", "type": "other" },
+  "color": {
+    "primary": {
+      "light": { "value": "#5B4BE7", "type": "color" },
+      "dark": { "value": "#8B7DF2", "type": "color" }
+    },
+    "primaryContrast": {
+      "light": { "value": "#FFFFFF", "type": "color" },
+      "dark": { "value": "#0F0B1E", "type": "color" }
+    },
+    "accent": {
+      "light": { "value": "#F25C54", "type": "color" },
+      "dark": { "value": "#FF8B82", "type": "color" }
+    },
+    "bg": {
+      "light": { "value": "#FAFAFC", "type": "color" },
+      "dark": { "value": "#0F0B1E", "type": "color" }
+    },
+    "bgElevated": {
+      "light": { "value": "#FFFFFF", "type": "color" },
+      "dark": { "value": "#171230", "type": "color" }
+    },
+    "fg": {
+      "light": { "value": "#11131F", "type": "color" },
+      "dark": { "value": "#E8E6F2", "type": "color" }
+    },
+    "fgMuted": {
+      "light": { "value": "#545A74", "type": "color" },
+      "dark": { "value": "#A5A7C2", "type": "color" }
+    },
+    "border": {
+      "light": { "value": "#DCDAEA", "type": "color" },
+      "dark": { "value": "#2A254A", "type": "color" }
+    },
+    "ring": {
+      "light": { "value": "#5B4BE7", "type": "color" },
+      "dark": { "value": "#8B7DF2", "type": "color" }
+    },
+    "danger": {
+      "light": { "value": "#B42318", "type": "color" },
+      "dark": { "value": "#F97066", "type": "color" }
+    },
+    "success": {
+      "light": { "value": "#067647", "type": "color" },
+      "dark": { "value": "#47CD89", "type": "color" }
+    },
+    "warning": {
+      "light": { "value": "#B54708", "type": "color" },
+      "dark": { "value": "#FDB022", "type": "color" }
+    }
+  }
+}
