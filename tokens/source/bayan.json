@@ -46,7 +46,7 @@
       "dark": { "value": "#47CD89", "type": "color" }
     },
     "warning": {
-      "light": { "value": "#B54708", "type": "color" },
+      "light": { "value": "#93370D", "type": "color" },
       "dark": { "value": "#FDB022", "type": "color" }
     }
   }

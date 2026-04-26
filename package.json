@@ -18,6 +18,7 @@
     "format:check": "prettier --check .",
     "test": "jest",
     "test:e2e": "playwright test",
+    "a11y:report": "playwright test --config tests/a11y-report/playwright.config.ts",
     "tokens:build": "tsx scripts/build-tokens.ts",
     "ladle": "ladle serve",
     "ladle:build": "ladle build",

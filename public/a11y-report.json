@@ -1,0 +1,331 @@
+{
+  "generatedAt": "2026-04-26T20:03:18.023Z",
+  "screens": [
+    {
+      "screen": "overview",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "overview",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "overview",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 25,
+      "violations": []
+    },
+    {
+      "screen": "overview",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "overview",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 23,
+      "violations": []
+    },
+    {
+      "screen": "overview",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "overview",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "overview",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 25,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 25,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 25,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 28,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 25,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 28,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 28,
+      "violations": []
+    },
+    {
+      "screen": "transactions",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 25,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 23,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 30,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 30,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 30,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 23,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 23,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 23,
+      "violations": []
+    },
+    {
+      "screen": "customers",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 23,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "agent",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 26,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "en",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "en",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "light",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "ar",
+      "brand": "bayan",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "light",
+      "passes": 22,
+      "violations": []
+    },
+    {
+      "screen": "settings",
+      "locale": "ar",
+      "brand": "alt",
+      "theme": "dark",
+      "passes": 22,
+      "violations": []
+    }
+  ],
+  "summary": {
+    "blocking": 0,
+    "moderate": 0,
+    "minor": 0,
+    "cleanScreens": 40
+  }
+}
