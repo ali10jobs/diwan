@@ -23,6 +23,8 @@ import {
 } from "@/lib/types/transaction";
 import { useTransactionsUrlState } from "./useTransactionsUrlState";
 import { useTransactionsTableQuery } from "./useTransactionsTableQuery";
+import { useGridKeyboardNav } from "./useGridKeyboardNav";
+import { localeDirection } from "@/lib/i18n/config";
 import { MultiSelectFilter } from "./filters/MultiSelectFilter";
 import { NumberRangeFilter } from "./filters/NumberRangeFilter";
 import { DateRangeFilter } from "./filters/DateRangeFilter";
@@ -209,6 +211,16 @@ export function TransactionsTable() {
   const paddingBottom =
     virtualRows.length > 0 ? totalSize - virtualRows[virtualRows.length - 1]!.end : 0;
 
+  const isRtl = localeDirection[locale] === "rtl";
+  const { cursor, onKeyDown, focusFirstCell } = useGridKeyboardNav({
+    rowCount: rows.length,
+    colCount: columns.length,
+    rowVirtualizer,
+    scrollRef,
+    isRtl,
+    getRowKey: (r) => rows[r]?.original.id ?? "",
+  });
+
   return (
     <div className="flex flex-col gap-4">
       <header className="flex flex-wrap items-baseline justify-between gap-3">
@@ -253,6 +265,16 @@ export function TransactionsTable() {
         }}
       />
 
+      {/* Skip link surfaces only on focus; lets keyboard users bypass the
+          header/filter row and land on the first grid cell. */}
+      <button
+        type="button"
+        onClick={focusFirstCell}
+        className="sr-only focus:not-sr-only focus:inline-flex focus:items-center focus:rounded focus:bg-[color:var(--color-primary)] focus:px-3 focus:py-1.5 focus:text-xs focus:font-medium focus:text-[color:var(--color-primary-contrast)]"
+      >
+        {t("a11y.skipToData")}
+      </button>
+
       {isError ? (
         <ErrorState message={(error as Error)?.message ?? "Unknown error"} onRetry={refetch} />
       ) : (
@@ -265,7 +287,9 @@ export function TransactionsTable() {
           <table
             role="grid"
             aria-rowcount={total}
+            aria-colcount={columns.length}
             aria-busy={isFetching}
+            onKeyDown={onKeyDown}
             className="w-full border-collapse text-sm"
           >
             <thead className="sticky top-0 z-10 bg-[color:var(--color-bg)] text-[color:var(--color-fg-muted)] shadow-[0_1px_0_0_var(--color-border)]">
@@ -333,6 +357,7 @@ export function TransactionsTable() {
               ) : null}
               {virtualRows.map((virtualRow) => {
                 const row = rows[virtualRow.index] as Row<Transaction>;
+                const r = virtualRow.index;
                 return (
                   <tr
                     key={row.id}
@@ -340,13 +365,22 @@ export function TransactionsTable() {
                     style={{ height: ROW_HEIGHT }}
                     className="border-t border-[color:var(--color-border)] hover:bg-[color:var(--color-bg)]/60"
                   >
-                    {row.getVisibleCells().map((cell) => {
+                    {row.getVisibleCells().map((cell, c) => {
                       const align =
                         (cell.column.columnDef.meta as ColumnMeta | undefined)?.align === "end"
                           ? "text-end"
                           : "text-start";
+                      const isCursor = cursor.r === r && cursor.c === c;
                       return (
-                        <td key={cell.id} className={`px-3 py-2 align-middle ${align}`}>
+                        <td
+                          key={cell.id}
+                          role="gridcell"
+                          aria-colindex={c + 1}
+                          data-r={r}
+                          data-c={c}
+                          tabIndex={isCursor ? 0 : -1}
+                          className={`px-3 py-2 align-middle outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[color:var(--color-ring)] ${align}`}
+                        >
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </td>
                       );

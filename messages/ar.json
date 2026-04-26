@@ -82,6 +82,9 @@
       "next": "التالي",
       "status": "الصفحة {page} من {totalPages}"
     },
+    "a11y": {
+      "skipToData": "تخطَّ إلى البيانات"
+    },
     "filters": {
       "openFilterFor": "تصفية حسب {column}",
       "apply": "تطبيق",

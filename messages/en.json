@@ -82,6 +82,9 @@
       "next": "Next",
       "status": "Page {page} of {totalPages}"
     },
+    "a11y": {
+      "skipToData": "Skip to data"
+    },
     "filters": {
       "openFilterFor": "Filter by {column}",
       "apply": "Apply",
