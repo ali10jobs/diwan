@@ -114,5 +114,81 @@
   "a11y": {
     "skipToContent": "Skip to main content",
     "openNav": "Open navigation"
+  },
+  "overview": {
+    "title": "Overview",
+    "subtitle": "Bayan Telecom — last 90 days at a glance.",
+    "kpisLabel": "Key performance indicators",
+    "kpis": {
+      "revenue": "Revenue",
+      "activeCustomers": "Active customers",
+      "arpu": "ARPU",
+      "failureRate": "Failure rate"
+    },
+    "charts": {
+      "revenueTimeSeries": "Daily revenue",
+      "revenueHint": "Successful transactions only, in SAR.",
+      "governorateBreakdown": "Revenue by governorate",
+      "governorateHint": "Top 8 governorates, stacked by transaction status."
+    },
+    "errors": {
+      "unknown": "Couldn't load overview.",
+      "retry": "Try again"
+    }
+  },
+  "customers": {
+    "title": "Customers",
+    "rowsFound": "{count, plural, =0 {No customers} one {# customer} other {# customers}}",
+    "refreshing": "Refreshing…",
+    "loading": "Loading customers…",
+    "empty": "No customers match the search.",
+    "emptyDetail": "Select a customer to see their details.",
+    "searchLabel": "Search customers",
+    "searchPlaceholder": "Search by name or phone…",
+    "listLabel": "Customer list",
+    "detailLabel": "Customer details",
+    "errors": {
+      "unknown": "Couldn't load customers.",
+      "retry": "Try again"
+    },
+    "tierLabel": {
+      "prepaid": "Prepaid",
+      "postpaid": "Postpaid",
+      "enterprise": "Enterprise"
+    },
+    "statusLabel": {
+      "active": "Active",
+      "suspended": "Suspended",
+      "churned": "Churned"
+    },
+    "fields": {
+      "id": "ID",
+      "status": "Status",
+      "tier": "Tier",
+      "governorate": "Region",
+      "joined": "Joined",
+      "lifetimeValue": "Lifetime value"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Locale, calendar, and appearance preferences.",
+    "sections": {
+      "locale": "Locale & numerals",
+      "localeHint": "Language, digit shaping, and calendar system. Each is independent — Arabic locale can use Western digits and the Gregorian calendar if you prefer.",
+      "appearance": "Appearance",
+      "appearanceHint": "Theme, brand, and information density. Survives reload."
+    },
+    "numerals": {
+      "label": "Numerals",
+      "auto": "Auto (follow locale)",
+      "arab": "Arabic-Indic (٠١٢٣)",
+      "latn": "Western (0123)"
+    },
+    "calendar": {
+      "label": "Calendar",
+      "gregory": "Gregorian",
+      "islamic-umalqura": "Hijri (Umm al-Qura)"
+    }
   }
 }
