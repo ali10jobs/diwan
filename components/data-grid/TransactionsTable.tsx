@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import {
   flexRender,
   getCoreRowModel,
   useReactTable,
   type ColumnDef,
+  type Row,
   type SortingState,
 } from "@tanstack/react-table";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import type { Transaction } from "@/lib/types/transaction";
@@ -143,6 +145,32 @@ export function TransactionsTable() {
   const page = query.page;
   const totalPages = data?.totalPages ?? 1;
 
+  // Virtualization: the page itself is server-paginated (≤ pageSize rows),
+  // but with `pageSize=100` of multi-cell rows the DOM cost is still
+  // material. Virtualizing inside the page gives constant scroll cost
+  // regardless of pageSize, and keeps the door open to bumping the page
+  // size later without re-architecting.
+  const rows = table.getRowModel().rows;
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const ROW_HEIGHT = 44; // matches "comfortable" density; revisit when wiring density
+  const rowVirtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => scrollRef.current,
+    estimateSize: () => ROW_HEIGHT,
+    overscan: 8,
+  });
+  // Reset scroll to the top whenever the page or sort changes — otherwise
+  // landing on page 2 mid-scroll feels like the data jumped under the user.
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, [page, query.sort.field, query.sort.direction]);
+
+  const virtualRows = rowVirtualizer.getVirtualItems();
+  const totalSize = rowVirtualizer.getTotalSize();
+  const paddingTop = virtualRows.length > 0 ? virtualRows[0]!.start : 0;
+  const paddingBottom =
+    virtualRows.length > 0 ? totalSize - virtualRows[virtualRows.length - 1]!.end : 0;
+
   return (
     <div className="flex flex-col gap-4">
       <header className="flex flex-wrap items-baseline justify-between gap-3">
@@ -160,14 +188,19 @@ export function TransactionsTable() {
       {isError ? (
         <ErrorState message={(error as Error)?.message ?? "Unknown error"} onRetry={refetch} />
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)]">
+        <div
+          ref={scrollRef}
+          // Bounded scroll container is what makes virtualization possible —
+          // the page itself never grows, only the inner scrollport does.
+          className="relative max-h-[calc(100vh-16rem)] min-h-[24rem] overflow-auto rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)]"
+        >
           <table
             role="grid"
             aria-rowcount={total}
             aria-busy={isFetching}
             className="w-full border-collapse text-sm"
           >
-            <thead className="bg-[color:var(--color-bg)] text-[color:var(--color-fg-muted)]">
+            <thead className="sticky top-0 z-10 bg-[color:var(--color-bg)] text-[color:var(--color-fg-muted)] shadow-[0_1px_0_0_var(--color-border)]">
               {table.getHeaderGroups().map((group) => (
                 <tr key={group.id}>
                   {group.headers.map((header) => {
@@ -211,25 +244,40 @@ export function TransactionsTable() {
               ))}
             </thead>
             <tbody>
-              {table.getRowModel().rows.map((row, idx) => (
-                <tr
-                  key={row.id}
-                  aria-rowindex={(page - 1) * query.pageSize + idx + 2}
-                  className="border-t border-[color:var(--color-border)] hover:bg-[color:var(--color-bg)]/60"
-                >
-                  {row.getVisibleCells().map((cell) => {
-                    const align =
-                      (cell.column.columnDef.meta as { align?: "end" } | undefined)?.align === "end"
-                        ? "text-end"
-                        : "text-start";
-                    return (
-                      <td key={cell.id} className={`px-3 py-2 align-middle ${align}`}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </td>
-                    );
-                  })}
+              {paddingTop > 0 ? (
+                <tr aria-hidden style={{ height: paddingTop }}>
+                  <td colSpan={columns.length} />
                 </tr>
-              ))}
+              ) : null}
+              {virtualRows.map((virtualRow) => {
+                const row = rows[virtualRow.index] as Row<Transaction>;
+                return (
+                  <tr
+                    key={row.id}
+                    aria-rowindex={(page - 1) * query.pageSize + virtualRow.index + 2}
+                    style={{ height: ROW_HEIGHT }}
+                    className="border-t border-[color:var(--color-border)] hover:bg-[color:var(--color-bg)]/60"
+                  >
+                    {row.getVisibleCells().map((cell) => {
+                      const align =
+                        (cell.column.columnDef.meta as { align?: "end" } | undefined)?.align ===
+                        "end"
+                          ? "text-end"
+                          : "text-start";
+                      return (
+                        <td key={cell.id} className={`px-3 py-2 align-middle ${align}`}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+              {paddingBottom > 0 ? (
+                <tr aria-hidden style={{ height: paddingBottom }}>
+                  <td colSpan={columns.length} />
+                </tr>
+              ) : null}
               {data && data.items.length === 0 ? (
                 <tr>
                   <td
