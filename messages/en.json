@@ -191,6 +191,60 @@
       "islamic-umalqura": "Hijri (Umm al-Qura)"
     }
   },
+  "a11yReport": {
+    "title": "Accessibility report",
+    "subtitle": "Latest CI axe-core results across every screen × locale × brand × theme.",
+    "missing": "No report has been generated yet. Run the a11y suite to populate this page.",
+    "summary": "Summary",
+    "screens": "Per-screen results",
+    "generatedAt": "Generated at {iso}.",
+    "stats": {
+      "blocking": "Critical + serious",
+      "moderate": "Moderate",
+      "minor": "Minor",
+      "cleanScreens": "Clean screens"
+    },
+    "status": {
+      "clean": "Clean",
+      "violations": "{count, plural, one {# violation} other {# violations}}"
+    },
+    "nodes": "{count, plural, one {# node} other {# nodes}}"
+  },
+  "accessibility": {
+    "title": "Accessibility statement",
+    "subtitle": "How Diwan is built and tested for inclusive use.",
+    "standard": {
+      "title": "Standard",
+      "body": "Diwan targets WCAG 2.1 Level AA across every screen, both locales (Arabic + English), both brand skins, and both light/dark themes. Logical CSS properties are used throughout so the interface mirrors correctly under right-to-left direction."
+    },
+    "scope": {
+      "title": "Scope",
+      "bullets": {
+        "locales": "Arabic (ar-SA) and English (en) — full UI parity, including Hijri (Umm al-Qura) and Gregorian calendars and Arabic-Indic / Western numeral systems.",
+        "themes": "Light, dark, and system-tracking themes — color contrast verified at WCAG AA on each.",
+        "brands": "Bayan and Alt brand tokens — verified independently because color contrast can vary per skin.",
+        "viewports": "Mobile (≥360 px), tablet (≥768 px), and laptop (≥1280 px). Every interactive element is at least 44×44 CSS px on touch targets."
+      }
+    },
+    "automated": {
+      "title": "Automated checks",
+      "body": "Every pull request runs axe-core against every screen × locale × brand × theme combination. Zero critical or serious violations is a merge gate, not advisory. Visual regression snapshots cover the same matrix at mobile and laptop viewports."
+    },
+    "manual": {
+      "title": "Manual screen-reader passes",
+      "orca": "Orca on Linux is the primary manual target — recorded against the Transactions grid in Arabic before each release.",
+      "voiceover": "VoiceOver on macOS is a secondary check when a Mac is available.",
+      "nvda": "NVDA on Windows is out of scope for this artifact — the developer environment is Linux."
+    },
+    "knownGaps": {
+      "title": "Known gaps",
+      "body": "Recharts SVG charts expose data via accessible labels but not as a navigable data table; users who prefer keyboard exploration of chart points should switch to the Transactions screen, which exposes the same data as an ARIA grid."
+    },
+    "contact": {
+      "title": "Reporting issues",
+      "body": "Open an issue on the GitHub repository if you encounter an accessibility barrier."
+    }
+  },
   "agent": {
     "title": "Agent",
     "subtitle": "Ask in Arabic or English. The agent translates your request into a transactions filter.",

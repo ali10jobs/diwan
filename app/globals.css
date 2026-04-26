@@ -59,3 +59,18 @@ body {
   background: var(--color-bg);
   color: var(--color-fg);
 }
+
+/* WCAG 2.3.3 — honor `prefers-reduced-motion` across every transition,
+ * animation, and smooth scroll. Anchored at the global root so it
+ * blankets shadcn primitives, our own utilities, and any future
+ * Recharts animations without per-component opt-in. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

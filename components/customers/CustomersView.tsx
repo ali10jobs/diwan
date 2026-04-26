@@ -101,8 +101,13 @@ export function CustomersView() {
             />
             <div
               ref={scrollRef}
-              role="listbox"
-              aria-label={t("listLabel")}
+              // Only adopt the listbox role once the list has at least
+              // one option — axe (WCAG 1.3.1) requires `role="listbox"`
+              // to contain `role="option"` children, which fails on the
+              // empty/loading states.
+              {...(customers.length > 0
+                ? { role: "listbox", "aria-label": t("listLabel") }
+                : { "aria-label": t("listLabel") })}
               className="relative max-h-[60vh] overflow-auto rounded-md border border-[color:var(--color-border)]"
             >
               {isLoading ? (
