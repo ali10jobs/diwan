@@ -28,6 +28,61 @@
     "heading": "Diwan",
     "subtitle": "Phase 3 — AppShell & navigation."
   },
+  "transactions": {
+    "title": "Transactions",
+    "rowsFound": "{count, plural, =0 {No transactions} one {# transaction} other {# transactions}}",
+    "refreshing": "Refreshing…",
+    "empty": "No transactions match the current filters.",
+    "columns": {
+      "id": "ID",
+      "createdAt": "Date",
+      "type": "Type",
+      "channel": "Channel",
+      "status": "Status",
+      "governorate": "Region",
+      "amount": "Amount"
+    },
+    "status": {
+      "succeeded": "Succeeded",
+      "failed": "Failed",
+      "pending": "Pending",
+      "reversed": "Reversed"
+    },
+    "type": {
+      "topup": "Top-up",
+      "bundle": "Bundle",
+      "bill": "Bill",
+      "transfer": "Transfer",
+      "refund": "Refund"
+    },
+    "channel": {
+      "ussd": "USSD",
+      "app": "App",
+      "web": "Web",
+      "pos": "POS",
+      "ivr": "IVR"
+    },
+    "governorate": {
+      "riyadh": "Riyadh",
+      "makkah": "Makkah",
+      "eastern": "Eastern Province",
+      "asir": "Asir",
+      "madinah": "Madinah",
+      "qassim": "Qassim",
+      "hail": "Ha'il",
+      "tabuk": "Tabuk",
+      "najran": "Najran",
+      "jazan": "Jazan",
+      "jouf": "Al-Jouf",
+      "bahah": "Al-Bahah",
+      "northern": "Northern Borders"
+    },
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "status": "Page {page} of {totalPages}"
+    }
+  },
   "theme": {
     "label": "Theme",
     "light": "Light",

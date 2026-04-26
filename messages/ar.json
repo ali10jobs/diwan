@@ -28,6 +28,61 @@
     "heading": "ديوان",
     "subtitle": "المرحلة الثالثة — هيكل التطبيق والتنقل."
   },
+  "transactions": {
+    "title": "المعاملات",
+    "rowsFound": "{count, plural, =0 {لا توجد معاملات} one {معاملة واحدة} two {معاملتان} few {# معاملات} many {# معاملة} other {# معاملة}}",
+    "refreshing": "جارٍ التحديث…",
+    "empty": "لا توجد معاملات تطابق عوامل التصفية الحالية.",
+    "columns": {
+      "id": "المعرّف",
+      "createdAt": "التاريخ",
+      "type": "النوع",
+      "channel": "القناة",
+      "status": "الحالة",
+      "governorate": "المنطقة",
+      "amount": "المبلغ"
+    },
+    "status": {
+      "succeeded": "ناجحة",
+      "failed": "فاشلة",
+      "pending": "قيد المعالجة",
+      "reversed": "معكوسة"
+    },
+    "type": {
+      "topup": "تعبئة رصيد",
+      "bundle": "باقة",
+      "bill": "فاتورة",
+      "transfer": "تحويل",
+      "refund": "استرداد"
+    },
+    "channel": {
+      "ussd": "USSD",
+      "app": "تطبيق",
+      "web": "ويب",
+      "pos": "نقطة بيع",
+      "ivr": "الرد الصوتي"
+    },
+    "governorate": {
+      "riyadh": "الرياض",
+      "makkah": "مكة المكرمة",
+      "eastern": "المنطقة الشرقية",
+      "asir": "عسير",
+      "madinah": "المدينة المنورة",
+      "qassim": "القصيم",
+      "hail": "حائل",
+      "tabuk": "تبوك",
+      "najran": "نجران",
+      "jazan": "جازان",
+      "jouf": "الجوف",
+      "bahah": "الباحة",
+      "northern": "الحدود الشمالية"
+    },
+    "pagination": {
+      "prev": "السابق",
+      "next": "التالي",
+      "status": "الصفحة {page} من {totalPages}"
+    }
+  },
   "theme": {
     "label": "المظهر",
     "light": "فاتح",
