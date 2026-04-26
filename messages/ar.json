@@ -81,6 +81,16 @@
       "prev": "السابق",
       "next": "التالي",
       "status": "الصفحة {page} من {totalPages}"
+    },
+    "filters": {
+      "openFilterFor": "تصفية حسب {column}",
+      "apply": "تطبيق",
+      "clear": "مسح",
+      "clearAll": "{count, plural, =0 {مسح عوامل التصفية} one {مسح عامل تصفية واحد} two {مسح عاملَي التصفية} few {مسح # عوامل تصفية} many {مسح # عاملًا للتصفية} other {مسح # عامل تصفية}}",
+      "min": "الأدنى",
+      "max": "الأقصى",
+      "from": "من",
+      "to": "إلى"
     }
   },
   "theme": {

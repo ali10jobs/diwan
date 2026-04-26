@@ -81,6 +81,16 @@
       "prev": "Previous",
       "next": "Next",
       "status": "Page {page} of {totalPages}"
+    },
+    "filters": {
+      "openFilterFor": "Filter by {column}",
+      "apply": "Apply",
+      "clear": "Clear",
+      "clearAll": "{count, plural, one {Clear # filter} other {Clear all # filters}}",
+      "min": "Min",
+      "max": "Max",
+      "from": "From",
+      "to": "To"
     }
   },
   "theme": {
