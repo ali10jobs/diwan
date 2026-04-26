@@ -27,12 +27,33 @@ function isArabic(s: string): boolean {
   return /[؀-ۿ]/.test(s);
 }
 
+/** Read `diwan.locale` from the Cookie header without next/headers — keeps
+ *  this route handler self-contained and easier to unit-test. */
+function readLocaleCookie(req: Request): "ar" | "en" {
+  const raw = req.headers.get("cookie") ?? "";
+  const match = raw.match(/(?:^|;\s*)diwan\.locale=([^;]+)/);
+  return match?.[1] === "ar" ? "ar" : "en";
+}
+
+const LOCALIZED_ERRORS = {
+  rate_limited: {
+    en: "Too many requests. Please slow down.",
+    ar: "عدد كبير من الطلبات. يُرجى التمهّل.",
+  },
+  quota_exceeded: {
+    en: "Daily demo quota reached.",
+    ar: "تم بلوغ الحد اليومي للنسخة التجريبية.",
+  },
+} as const;
+
 export async function POST(req: Request): Promise<Response> {
   // 1. Size cap (CLAUDE.md → Security): reject anything over 4 KB.
   const lengthHeader = req.headers.get("content-length");
   if (lengthHeader && Number(lengthHeader) > MAX_REQUEST_BYTES) {
     return jsonError(413, "request_too_large", "Request body exceeds 4 KB");
   }
+
+  const locale = readLocaleCookie(req);
 
   // 2. Rate limit (per IP, in-memory token bucket).
   const key = clientKey(req);
@@ -42,7 +63,7 @@ export async function POST(req: Request): Promise<Response> {
       JSON.stringify({
         error: {
           code: "rate_limited",
-          message: "Too many requests. Please slow down.",
+          message: LOCALIZED_ERRORS.rate_limited[locale],
           resetSeconds: rl.resetSeconds,
         },
       }),
@@ -55,7 +76,7 @@ export async function POST(req: Request): Promise<Response> {
 
   // 3. Daily token cap (per warm worker).
   if (isQuotaExceeded(TOKEN_CAP)) {
-    return jsonError(429, "quota_exceeded", "Daily demo quota reached");
+    return jsonError(429, "quota_exceeded", LOCALIZED_ERRORS.quota_exceeded[locale]);
   }
 
   // 4. Parse + validate body.
