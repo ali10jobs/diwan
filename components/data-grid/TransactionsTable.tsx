@@ -25,6 +25,8 @@ import { useTransactionsUrlState } from "./useTransactionsUrlState";
 import { useTransactionsTableQuery } from "./useTransactionsTableQuery";
 import { useGridKeyboardNav } from "./useGridKeyboardNav";
 import { localeDirection } from "@/lib/i18n/config";
+import { Download } from "lucide-react";
+import { transactionsQueryString } from "@/lib/url/transactions-query-serialize";
 import { MultiSelectFilter } from "./filters/MultiSelectFilter";
 import { NumberRangeFilter } from "./filters/NumberRangeFilter";
 import { DateRangeFilter } from "./filters/DateRangeFilter";
@@ -240,6 +242,17 @@ export function TransactionsTable() {
               {t("filters.clearAll", { count: countActiveFilters(query) })}
             </button>
           ) : null}
+          <a
+            href={`/api/transactions/export${transactionsQueryString(query)}${
+              transactionsQueryString(query) ? "&" : "?"
+            }locale=${locale}`}
+            // Native anchor download — the browser owns the progress UI,
+            // and the route streams so memory stays bounded for big sets.
+            className="inline-flex items-center gap-1.5 rounded-md border border-[color:var(--color-border)] px-3 py-1.5 text-xs font-medium hover:bg-[color:var(--color-bg)]"
+          >
+            <Download className="size-3.5" aria-hidden />
+            {t("export")}
+          </a>
           <div className="text-xs text-[color:var(--color-fg-muted)]" aria-live="polite">
             {isFetching ? t("refreshing") : null}
           </div>
