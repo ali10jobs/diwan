@@ -190,5 +190,17 @@
       "gregory": "Gregorian",
       "islamic-umalqura": "Hijri (Umm al-Qura)"
     }
+  },
+  "agent": {
+    "title": "Agent",
+    "subtitle": "Ask in Arabic or English. The agent translates your request into a transactions filter.",
+    "conversationLabel": "Agent conversation",
+    "emptyHint": "Try: \"failed top-ups in Riyadh over 100 SAR last week\".",
+    "thinking": "Thinking…",
+    "send": "Send",
+    "inputLabel": "Agent prompt",
+    "placeholder": "Ask the agent…",
+    "toolApplied": "Filter applied",
+    "errorGeneric": "Couldn't reach the agent."
   }
 }
