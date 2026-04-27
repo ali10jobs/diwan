@@ -37,6 +37,8 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+const SITE_ORIGIN = "https://diwan-rtl-dashboard.vercel.app";
+
 export async function generateMetadata({
   params,
 }: {
@@ -46,8 +48,25 @@ export async function generateMetadata({
   const safeLocale: Locale = hasLocale(routing.locales, locale) ? locale : defaultLocale;
   const t = await getTranslations({ locale: safeLocale, namespace: "app" });
   return {
+    metadataBase: new URL(SITE_ORIGIN),
     title: { default: t("name"), template: `%s · ${t("name")}` },
     description: t("description"),
+    alternates: {
+      canonical: `/${safeLocale}`,
+      languages: {
+        en: `/en`,
+        "ar-SA": `/ar`,
+        "x-default": `/en`,
+      },
+    },
+    openGraph: {
+      title: t("name"),
+      description: t("description"),
+      url: `/${safeLocale}`,
+      siteName: t("name"),
+      locale: safeLocale === "ar" ? "ar_SA" : "en_US",
+      type: "website",
+    },
   };
 }
 
