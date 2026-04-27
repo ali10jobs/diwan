@@ -8,6 +8,8 @@ import { routing } from "@/lib/i18n/navigation";
 import { BrandProvider } from "@/components/theme/BrandProvider";
 import { DensityProvider } from "@/components/theme/DensityProvider";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AppShell } from "@/components/layout/AppShell";
 import { QueryProvider } from "@/components/query/QueryProvider";
 import {
@@ -92,6 +94,8 @@ export default async function LocaleLayout({
               <DensityProvider initialDensity={density}>
                 <QueryProvider>
                   <AppShell>{children}</AppShell>
+                  <Analytics />
+                  <SpeedInsights />
                 </QueryProvider>
               </DensityProvider>
             </ThemeProvider>

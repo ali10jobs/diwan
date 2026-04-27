@@ -24,6 +24,15 @@
     "goHome": "Go to overview",
     "itemsFound": "{count, plural, =0 {No items} one {# item} other {# items}}"
   },
+  "errors": {
+    "title": "Something went wrong.",
+    "body": "We hit an unexpected error rendering this page. The action below will try again, or you can return to the overview.",
+    "errorId": "Error id: {id}",
+    "retry": "Try again",
+    "goHome": "Go to overview",
+    "notFoundTitle": "Page not found.",
+    "notFoundBody": "That page doesn't exist or has been moved."
+  },
   "phase0": {
     "heading": "Diwan",
     "subtitle": "Phase 3 — AppShell & navigation."
